@@ -75,3 +75,4 @@ nav:
       - Standard Fix Note: templates/standard-fix-note.md
   - Tools:
       - Hướng dẫn sử dụng Codex: tools/huong-dan-su-dung-codex.md
+      - Hướng dẫn setup để bắn Core API Gateway: tools/huong-dan-setup-dje-ban-core-api-gateway.md
