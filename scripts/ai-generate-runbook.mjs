@@ -1,17 +1,15 @@
 import fs from "fs";
 import path from "path";
-import OpenAI from "openai";
 import slugify from "slugify";
 import yaml from "js-yaml";
-
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
 
 const issueTitle = process.env.ISSUE_TITLE || "Runbook note";
 const issueBody = process.env.ISSUE_BODY || "";
 const issueNumber = process.env.ISSUE_NUMBER || "0";
-const model = process.env.OPENAI_MODEL || "gpt-5.4-mini";
+
+// Optional envs from GitHub Action
+const issueCategoryEnv = process.env.ISSUE_CATEGORY || process.env.CATEGORY || "";
+const issueLabels = process.env.ISSUE_LABELS || "";
 
 const allowedCategories = [
   "ubuntu",
@@ -21,7 +19,7 @@ const allowedCategories = [
   "sqlserver",
   "git",
   "errors",
-  "tools"
+  "tools",
 ];
 
 const categoryTitles = {
@@ -32,16 +30,25 @@ const categoryTitles = {
   sqlserver: "SQL Server",
   git: "Git",
   errors: "Errors",
-  tools: "Tools"
+  tools: "Tools",
+};
+
+const categoryAliases = {
+  "sql server": "sqlserver",
+  "sql-server": "sqlserver",
+  "mssql": "sqlserver",
+  "ms sql": "sqlserver",
+  "cloud flare": "cloudflare",
+  "cloud-flare": "cloudflare",
 };
 
 function extractSection(body, sectionName) {
   const escapedSectionName = sectionName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
   const patterns = [
-    new RegExp(`###\\s+${escapedSectionName}\\s+([\\s\\S]*?)(\\n###|$)`, "i"),
-    new RegExp(`\\*\\*${escapedSectionName}\\*\\*\\s*\\n+([\\s\\S]*?)(\\n\\*\\*|\\n###|$)`, "i"),
-    new RegExp(`${escapedSectionName}\\s*:\\s*(.+)`, "i"),
+    new RegExp(`^#{2,6}\\s+${escapedSectionName}\\s*\\n+([\\s\\S]*?)(\\n#{2,6}\\s+|$)`, "im"),
+    new RegExp(`\\*\\*${escapedSectionName}\\*\\*\\s*\\n+([\\s\\S]*?)(\\n\\*\\*|\\n#{2,6}\\s+|$)`, "i"),
+    new RegExp(`^${escapedSectionName}\\s*:\\s*(.+)$`, "im"),
   ];
 
   for (const regex of patterns) {
@@ -56,11 +63,62 @@ function extractSection(body, sectionName) {
 }
 
 function normalizeCategory(value) {
-  const normalized = (value || "").trim().toLowerCase();
+  const raw = (value || "")
+    .trim()
+    .toLowerCase()
+    .replace(/[`"'[\]()]/g, "")
+    .replace(/^[-*+]\s*/, "")
+    .replace(/^category\s*:\s*/, "")
+    .trim();
 
-  if (allowedCategories.includes(normalized)) {
-    return normalized;
+  const firstLine = raw
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)[0] || "";
+
+  const cleaned = categoryAliases[firstLine] || firstLine;
+
+  if (allowedCategories.includes(cleaned)) {
+    return cleaned;
   }
+
+  for (const category of allowedCategories) {
+    const regex = new RegExp(`(^|[^a-z0-9])${category}([^a-z0-9]|$)`, "i");
+
+    if (regex.test(raw)) {
+      return category;
+    }
+  }
+
+  for (const [alias, category] of Object.entries(categoryAliases)) {
+    if (raw.includes(alias)) {
+      return category;
+    }
+  }
+
+  return "";
+}
+
+function resolveCategory() {
+  const categoryFromEnv = normalizeCategory(issueCategoryEnv);
+
+  if (categoryFromEnv) {
+    return categoryFromEnv;
+  }
+
+  const categoryFromIssue = normalizeCategory(extractSection(issueBody, "Category"));
+
+  if (categoryFromIssue) {
+    return categoryFromIssue;
+  }
+
+  const categoryFromLabels = normalizeCategory(issueLabels);
+
+  if (categoryFromLabels) {
+    return categoryFromLabels;
+  }
+
+  console.log("Category not found. Fallback to errors.");
 
   return "errors";
 }
@@ -166,10 +224,9 @@ function updateMkDocsNavigation({ category, targetFile, pageTitle }) {
   console.log(`Updated mkdocs.yml with ${relativeDocPath}`);
 }
 
-const categoryFromIssue = extractSection(issueBody, "Category");
 const topicTitleFromIssue = extractSection(issueBody, "Topic title");
 
-const category = normalizeCategory(categoryFromIssue);
+const category = resolveCategory();
 const cleanedIssueTitle = cleanIssueTitle(issueTitle);
 const rawTitle = topicTitleFromIssue || cleanedIssueTitle || `Runbook issue ${issueNumber}`;
 
@@ -183,55 +240,14 @@ ensureDirectory(targetDir);
 
 const targetFile = path.join(targetDir, `${fileName || `issue-${issueNumber}`}.md`);
 
-const prompt = `
-You are maintaining a MkDocs DevOps runbook.
+// Use issue body directly. No AI processing.
+const markdown = issueBody.trim();
 
-Convert the following GitHub issue into a clean Markdown runbook note.
-
-Rules:
-- Output Markdown only.
-- Use English command comments.
-- Keep commands safe and practical.
-- Do not invent credentials, private IPs, passwords, tokens, or secrets.
-- If information is missing, add a "Notes" section with assumptions.
-- Keep the content concise but useful.
-- Use this exact structure:
-
-# ${rawTitle}
-
-## Situation
-
-## Error
-
-## Root cause
-
-## Fix commands
-
-## Verification commands
-
-## Notes
-
-## Tags
-
-Issue title:
-${issueTitle}
-
-Issue body:
-${issueBody}
-`;
-
-const response = await client.responses.create({
-  model,
-  input: prompt,
-});
-
-const markdown = response.output_text || "";
-
-if (!markdown.trim()) {
-  throw new Error("OpenAI returned empty markdown content.");
+if (!markdown) {
+  throw new Error("ISSUE_BODY is empty. Cannot create markdown file.");
 }
 
-fs.writeFileSync(targetFile, markdown, "utf8");
+fs.writeFileSync(targetFile, `${markdown}\n`, "utf8");
 
 console.log(`Created ${targetFile}`);
 
