@@ -1,0 +1,45 @@
+name: AI Runbook Generator
+
+on:
+  issues:
+    types: [opened, labeled]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: read
+
+jobs:
+  generate:
+    if: contains(github.event.issue.labels.*.name, 'ai-note')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install openai slugify js-yaml
+
+      - name: Generate markdown from issue
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          ISSUE_TITLE: ${{ github.event.issue.title }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        run: node scripts/ai-generate-runbook.mjs
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "docs: add AI generated runbook note"
+          title: "docs: AI runbook note from issue #${{ github.event.issue.number }}"
+          body: "Generated from issue #${{ github.event.issue.number }}. Please review before merge."
+          branch: "ai/runbook-note-${{ github.event.issue.number }}"
