@@ -41,5 +41,14 @@ jobs:
         with:
           commit-message: "docs: add AI generated runbook note"
           title: "docs: AI runbook note from issue #${{ github.event.issue.number }}"
-          body: "Generated from issue #${{ github.event.issue.number }}. Please review before merge."
+          body: |
+            Generated from issue #${{ github.event.issue.number }}.
+            
+            Please review before merge.
+            
+            Closes #${{ github.event.issue.number }}
           branch: "ai/runbook-note-${{ github.event.issue.number }}"
+          delete-branch: true
+          add-paths: |
+            docs/**/*.md
+            mkdocs.yml
