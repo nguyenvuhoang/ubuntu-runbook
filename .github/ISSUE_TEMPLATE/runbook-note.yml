@@ -17,6 +17,7 @@ body:
         - sqlserver
         - git
         - errors
+        - tools
       default: 6
     validations:
       required: true
