@@ -13,7 +13,12 @@ permissions:
 
 jobs:
   generate:
-    if: contains(github.event.issue.labels.*.name, 'ai-note')
+    if: >
+      contains(github.event.issue.labels.*.name, 'ai-note') &&
+      (
+        github.event_name == 'issues' ||
+        startsWith(github.event.comment.body, '/runbook')
+      )
     runs-on: ubuntu-latest
 
     steps:

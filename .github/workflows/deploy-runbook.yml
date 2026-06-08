@@ -1,0 +1,25 @@
+name: Deploy Ubuntu Runbook
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+      - "mkdocs.yml"
+      - "docs/stylesheets/**"
+      - "docs/assets/**"
+      - "deploy.sh"
+      - "docker-compose.yml"
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Deploy on server
+        run: |
+          cd /opt/apps/ubuntu-runbook
+          ./deploy.sh
