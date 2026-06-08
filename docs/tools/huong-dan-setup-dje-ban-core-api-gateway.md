@@ -1,33 +1,4 @@
-## Runbook Note
-
-### Category
-`tools`
-
-### Topic title
-Hướng dẫn setup để bắn Core API Gateway
-
-### Situation
-Team cần một tài liệu hướng dẫn cách setup và sử dụng Postman để bắn Core API Gateway, bao gồm quy trình tạo static token, login vào core để lấy token giao dịch, gắn token vào header `UID` và bắn API giao dịch.
-
-Tài liệu gốc: **Hướng dẫn setup để bắn core api gateway.pdf**.
-
-Đường dẫn tài liệu mong muốn sau khi được review/merge:
-
-```text
-docs/tools/core-api-gateway.md
-```
-
-### Error message
-Không có lỗi. Đây là tài liệu hướng dẫn thao tác/công cụ.
-
-### Commands used to fix
-Không áp dụng.
-
-### Verification commands
-Không áp dụng.
-
-### Final result
-Chuyển nội dung tài liệu sang Markdown như sau:
+##
 
 # Hướng dẫn setup để bắn Core API Gateway
 
@@ -271,7 +242,9 @@ Kiểm tra lại:
 - Xem `error_code`, `error_name`, `error_description` để xác định lỗi nghiệp vụ.
 
 ### Tags
+
 `core-api-gateway`, `postman`, `api`, `token`, `core`, `transaction`, `backend`, `tools`
 
 ### Tags
+
 core-api-gateway, postman, api, token, core, transaction, backend, tools
