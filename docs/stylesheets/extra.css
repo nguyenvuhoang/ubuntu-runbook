@@ -25,12 +25,10 @@
 body {
   font-family: "Quicksand", sans-serif;
   background:
-    linear-gradient(
-      180deg,
+    linear-gradient(180deg,
       rgba(5, 8, 32, 0.15) 0%,
       rgba(5, 8, 32, 0.45) 40%,
-      rgba(3, 5, 20, 0.9) 100%
-    ),
+      rgba(3, 5, 20, 0.9) 100%),
     url("../assets/background-anhben-universe.png") center center / cover fixed no-repeat;
   color: #eef3ff;
 }
@@ -99,11 +97,9 @@ body {
   border-radius: 32px;
 
   background:
-    linear-gradient(
-      135deg,
+    linear-gradient(135deg,
       rgba(11, 18, 65, 0.74),
-      rgba(35, 19, 88, 0.58)
-    ) !important;
+      rgba(35, 19, 88, 0.58)) !important;
 
   border: 1px solid rgba(139, 233, 255, 0.18);
   box-shadow:
@@ -188,7 +184,7 @@ body {
 }
 
 /* Code block */
-.md-typeset pre > code {
+.md-typeset pre>code {
   font-size: 0.82rem;
 }
 
@@ -368,12 +364,10 @@ body {
 /* Footer meta area */
 .md-footer-meta {
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(4, 6, 25, 0.96),
       rgba(12, 18, 70, 0.96),
-      rgba(4, 6, 25, 0.96)
-    ) !important;
+      rgba(4, 6, 25, 0.96)) !important;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
 
@@ -395,7 +389,7 @@ body {
 }
 
 /* Hide "Made with Material for MkDocs" if still visible */
-.md-copyright__highlight + div,
+.md-copyright__highlight+div,
 .md-copyright a[href*="squidfunk.github.io"] {
   display: none !important;
 }
@@ -447,11 +441,9 @@ body {
   border-radius: 10px !important;
 
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(139, 233, 255, 0.14),
-      rgba(124, 58, 237, 0.1)
-    ) !important;
+      rgba(124, 58, 237, 0.1)) !important;
 
   border: 1px solid rgba(139, 233, 255, 0.16) !important;
 }
@@ -471,17 +463,15 @@ body {
   background: transparent !important;
 }
 
-.md-sidebar--primary .md-nav[data-md-level="0"] > .md-nav__list > .md-nav__item:first-child {
+.md-sidebar--primary .md-nav[data-md-level="0"]>.md-nav__list>.md-nav__item:first-child {
   background: transparent !important;
 }
 
-.md-sidebar--primary .md-nav[data-md-level="0"] > .md-nav__list > .md-nav__item:first-child > .md-nav__link {
+.md-sidebar--primary .md-nav[data-md-level="0"]>.md-nav__list>.md-nav__item:first-child>.md-nav__link {
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(139, 233, 255, 0.14),
-      rgba(124, 58, 237, 0.1)
-    ) !important;
+      rgba(124, 58, 237, 0.1)) !important;
   color: #8be9ff !important;
   box-shadow: none !important;
   border-radius: 10px !important;
@@ -492,6 +482,7 @@ body {
    ========================================================= */
 
 @media screen and (min-width: 76.25em) {
+
   /* Keep all 3 columns inside the rounded main card */
   .md-main__inner {
     align-items: stretch !important;
@@ -653,7 +644,7 @@ body {
 }
 
 /* Overlay background when search is opened */
-[data-md-toggle="search"]:checked ~ .md-container .md-search__overlay {
+[data-md-toggle="search"]:checked~.md-container .md-search__overlay {
   background: rgba(2, 4, 18, 0.55) !important;
   backdrop-filter: blur(6px);
 }
@@ -700,22 +691,18 @@ body {
 .md-search-result__item:hover,
 .md-search-result__link:hover {
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(139, 233, 255, 0.14),
-      rgba(124, 58, 237, 0.12)
-    ) !important;
+      rgba(124, 58, 237, 0.12)) !important;
 }
 
 /* Fix selected / active result */
 .md-search-result__link[data-md-state="active"],
 .md-search-result__link:focus {
   background:
-    linear-gradient(
-      90deg,
+    linear-gradient(90deg,
       rgba(139, 233, 255, 0.18),
-      rgba(124, 58, 237, 0.14)
-    ) !important;
+      rgba(124, 58, 237, 0.14)) !important;
   outline: none !important;
 }
 
@@ -761,4 +748,99 @@ body {
 .md-search__output {
   border: 1px solid rgba(139, 233, 255, 0.22) !important;
   box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55) !important;
+}
+
+/* ================================
+   Layout width - wider / almost full screen
+================================ */
+
+.md-grid {
+  max-width: 96vw !important;
+}
+
+.md-main__inner {
+  max-width: 96vw !important;
+}
+
+/* Main article content wider */
+.md-content {
+  max-width: none !important;
+}
+
+.md-content__inner {
+  max-width: none !important;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* Make center content breathe more on desktop */
+@media screen and (min-width: 76.25em) {
+  .md-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .md-sidebar--primary {
+    width: 14rem;
+  }
+
+  .md-sidebar--secondary {
+    width: 15rem;
+  }
+}
+
+/* ================================
+   Reduce sidebars width
+   Give more space to center content
+================================ */
+
+@media screen and (min-width: 76.25em) {
+
+  /* Full layout width */
+  .md-grid,
+  .md-main__inner {
+    max-width: 98vw !important;
+  }
+
+  /* Left sidebar: Home / categories */
+  .md-sidebar--primary {
+    width: 9.5rem !important;
+    min-width: 9.5rem !important;
+    max-width: 9.5rem !important;
+  }
+
+  /* Right sidebar: Table of contents */
+  .md-sidebar--secondary {
+    width: 10.5rem !important;
+    min-width: 10.5rem !important;
+    max-width: 10.5rem !important;
+  }
+
+  /* Center content expand */
+  .md-content {
+    max-width: none !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .md-content__inner {
+    max-width: none !important;
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+
+  /* Make sidebar inner box fit smaller width */
+  .md-sidebar__scrollwrap {
+    width: 100% !important;
+    padding: 0.7rem !important;
+  }
+
+  .md-nav__link {
+    padding: 0.5rem 0.65rem !important;
+    border-radius: 0.45rem;
+  }
+
+  .md-nav__title {
+    padding: 0.6rem 0.65rem !important;
+  }
 }
