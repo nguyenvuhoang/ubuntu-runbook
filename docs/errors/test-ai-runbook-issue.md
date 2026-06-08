@@ -2,9 +2,7 @@
 
 ## Situation
 
-This is a test issue to verify the Runbook Note contribution flow for the Ubuntu Runbook repository.
-
-The goal is to confirm that team members can create a structured runbook issue in GitHub and that a future AI workflow can read the issue content and convert it into a Markdown runbook note.
+This is a test issue to verify the runbook note contribution flow for the Ubuntu Runbook repository. The goal is to confirm that team members can create a structured runbook issue from GitHub and that a future AI workflow can read the issue content and convert it into a Markdown note.
 
 ## Error
 
@@ -15,7 +13,7 @@ No real production error happened.
 
 ## Root cause
 
-This is not a production incident. The issue exists only to validate the runbook issue template and the AI note generation workflow.
+This is not a production incident. The issue exists only to validate the issue template and the AI-generated runbook note workflow.
 
 ## Fix commands
 
@@ -31,10 +29,9 @@ echo "Issue created successfully"
 
 ## Notes
 
-- This is a test-only runbook note.
-- No real service impact or incident occurred.
-- Safe to close after the team confirms the issue template and contribution flow are working.
-- Assumption: the repository uses this note as part of a GitHub issue-to-Markdown runbook generation workflow.
+- This issue is safe to close after the team confirms the issue template and contribution flow are working.
+- Assumption: the resulting runbook note is intended as a draft/example for workflow validation, not for incident response.
+- No real credentials, systems, or production services are involved.
 
 ## Tags
 
