@@ -1,5 +1,6 @@
 site_name: Ubuntu Runbook
-site_description: Personal DevOps fix notes for Ubuntu, Docker, Nginx, Cloudflare, SQL Server and Git
+site_description: Personal DevOps fix notes for Ubuntu, Docker, Nginx,
+  Cloudflare, SQL Server and Git
 site_author: AnhBen
 copyright: Copyright &copy; 2026 AnhBen / JITS. All rights reserved.
 generator: false
@@ -76,3 +77,4 @@ nav:
   - Tools:
       - Hướng dẫn sử dụng Codex: tools/huong-dan-su-dung-codex.md
       - Hướng dẫn setup để bắn Core API Gateway: tools/huong-dan-setup-dje-ban-core-api-gateway.md
+      - Runbook KB Overview: tools/runbook-knowledge-base-overview-and-operations.md
