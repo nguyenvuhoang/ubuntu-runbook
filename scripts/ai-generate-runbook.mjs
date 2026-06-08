@@ -21,6 +21,7 @@ const allowedCategories = [
   "sqlserver",
   "git",
   "errors",
+  "tools"
 ];
 
 const categoryTitles = {
@@ -31,6 +32,7 @@ const categoryTitles = {
   sqlserver: "SQL Server",
   git: "Git",
   errors: "Errors",
+  tools: "Tools"
 };
 
 function extractSection(body, sectionName) {
