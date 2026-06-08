@@ -71,5 +71,6 @@ nav:
       - YAML Tab Character: errors/yaml-tab-character.md
       - Port Already Used: errors/port-already-used.md
       - Systemctl Service Not Found: errors/systemctl-service-not-found.md
+      - Hướng dẫn sử dụng Codex: errors/huong-dan-su-dung-codex.md
   - Templates:
       - Standard Fix Note: templates/standard-fix-note.md
