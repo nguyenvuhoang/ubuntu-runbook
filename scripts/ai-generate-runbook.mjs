@@ -36,14 +36,23 @@ const categoryTitles = {
 };
 
 function extractSection(body, sectionName) {
-  const regex = new RegExp(`###\\s+${sectionName}\\s+([\\s\\S]*?)(\\n###|$)`, "i");
-  const match = body.match(regex);
+  const escapedSectionName = sectionName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-  if (!match) {
-    return "";
+  const patterns = [
+    new RegExp(`###\\s+${escapedSectionName}\\s+([\\s\\S]*?)(\\n###|$)`, "i"),
+    new RegExp(`\\*\\*${escapedSectionName}\\*\\*\\s*\\n+([\\s\\S]*?)(\\n\\*\\*|\\n###|$)`, "i"),
+    new RegExp(`${escapedSectionName}\\s*:\\s*(.+)`, "i"),
+  ];
+
+  for (const regex of patterns) {
+    const match = body.match(regex);
+
+    if (match && match[1]) {
+      return match[1].trim();
+    }
   }
 
-  return match[1].trim();
+  return "";
 }
 
 function normalizeCategory(value) {
