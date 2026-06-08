@@ -1,19 +1,16 @@
-﻿site_name: Ubuntu Runbook
+site_name: Ubuntu Runbook
 site_description: Personal DevOps fix notes for Ubuntu, Docker, Nginx, Cloudflare, SQL Server and Git
 site_author: AnhBen
-copyright: "Copyright &copy; 2026 AnhBen / JITS. All rights reserved."
+copyright: Copyright &copy; 2026 AnhBen / JITS. All rights reserved.
 generator: false
-
 theme:
   name: material
   language: en
   logo: assets/logo.png
   favicon: assets/logo.png
-
   font:
     text: Quicksand
     code: Roboto Mono
-
   palette:
     - scheme: default
       primary: indigo
@@ -21,14 +18,12 @@ theme:
       toggle:
         icon: material/weather-night
         name: Switch to dark mode
-
     - scheme: slate
       primary: indigo
       accent: cyan
       toggle:
         icon: material/weather-sunny
         name: Switch to light mode
-
   features:
     - navigation.tabs
     - navigation.sections
@@ -37,54 +32,44 @@ theme:
     - search.suggest
     - content.code.copy
     - content.code.select
-
 extra_css:
   - stylesheets/extra.css
-
 extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/nguyenvuhoang
       name: GitHub - nguyenvuhoang
-
 nav:
   - Home: index.md
-
   - Ubuntu:
       - Check RAM: ubuntu/check-ram.md
       - Check Disk: ubuntu/check-disk.md
       - Permission Denied: ubuntu/permission-denied.md
       - Service Systemctl: ubuntu/service-systemctl.md
-
   - Docker:
       - Docker Compose: docker/docker-compose.md
       - Port Mapping: docker/port-mapping.md
       - Docker Logs: docker/docker-logs.md
       - Redis RabbitMQ: docker/redis-rabbitmq.md
-
+      - Test auto MkDocs navigation update: docker/test-auto-mkdocs-navigation-update.md
   - Nginx:
       - Reverse Proxy: nginx/reverse-proxy.md
       - Fix 502: nginx/fix-502.md
       - Docker Nginx HTML: nginx/docker-nginx-html.md
-
   - Cloudflare:
       - WARP Private Network: cloudflare/warp-private-network.md
       - Tunnel To Nginx: cloudflare/tunnel-to-nginx.md
       - SQL Server Private CIDR: cloudflare/sqlserver-private-cidr.md
-
   - SQL Server:
       - Docker SQL Server: sqlserver/docker-sqlserver.md
       - Open Port 1433: sqlserver/open-port-1433.md
       - Connect Through WARP: sqlserver/connect-through-warp.md
-
   - Git:
       - Fix Existing Tag: git/tag-would-clobber-existing-tag.md
       - Divergent Branch: git/divergent-branch.md
-
   - Errors:
       - YAML Tab Character: errors/yaml-tab-character.md
       - Port Already Used: errors/port-already-used.md
       - Systemctl Service Not Found: errors/systemctl-service-not-found.md
-
   - Templates:
       - Standard Fix Note: templates/standard-fix-note.md
