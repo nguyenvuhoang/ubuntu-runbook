@@ -1,0 +1,92 @@
+name: Runbook Note
+description: Submit a new DevOps issue or command note
+title: "[Runbook] "
+labels: ["runbook", "ai-note"]
+
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      description: Select the documentation category.
+      options:
+        - ubuntu
+        - docker
+        - nginx
+        - cloudflare
+        - sqlserver
+        - git
+        - errors
+      default: 6
+    validations:
+      required: true
+
+  - type: input
+    id: topic
+    attributes:
+      label: Topic title
+      description: Short title for this runbook note.
+      placeholder: Fix Docker Compose YAML tab character
+    validations:
+      required: true
+
+  - type: textarea
+    id: situation
+    attributes:
+      label: Situation
+      description: When did this happen?
+      placeholder: I ran docker compose up -d and got this error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: error
+    attributes:
+      label: Error message
+      description: Paste the exact error message here.
+      render: bash
+      placeholder: Paste error here
+    validations:
+      required: false
+
+  - type: textarea
+    id: commands
+    attributes:
+      label: Commands used to fix
+      description: Paste the commands that solved the issue.
+      render: bash
+      placeholder: |
+        docker compose config
+        docker compose up -d
+    validations:
+      required: false
+
+  - type: textarea
+    id: verification
+    attributes:
+      label: Verification commands
+      description: Commands used to verify the fix.
+      render: bash
+      placeholder: |
+        docker ps
+        curl -I http://localhost
+    validations:
+      required: false
+
+  - type: textarea
+    id: result
+    attributes:
+      label: Final result
+      description: What happened after applying the fix?
+      placeholder: After running the command, the service started successfully.
+    validations:
+      required: false
+
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Keywords for searching.
+      placeholder: docker, yaml, compose, ubuntu
+    validations:
+      required: false
