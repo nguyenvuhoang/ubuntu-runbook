@@ -71,6 +71,7 @@ nav:
       - YAML Tab Character: errors/yaml-tab-character.md
       - Port Already Used: errors/port-already-used.md
       - Systemctl Service Not Found: errors/systemctl-service-not-found.md
+      - Hướng dẫn setup để bắn Core API Gateway: errors/huong-dan-setup-dje-ban-core-api-gateway.md
   - Templates:
       - Standard Fix Note: templates/standard-fix-note.md
   - Tools:
