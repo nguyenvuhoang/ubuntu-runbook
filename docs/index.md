@@ -35,3 +35,5 @@ Each note should include:
 3. Fix commands
 4. Verification commands
 5. Tags
+
+<!-- deploy-test: 2026-06-08 09:00 -->
