@@ -47,6 +47,7 @@ nav:
       - Check Disk: ubuntu/check-disk.md
       - Permission Denied: ubuntu/permission-denied.md
       - Service Systemctl: ubuntu/service-systemctl.md
+      - Find Missing O24Platform DLL: ubuntu/find-missing-o24platform-dll.md
   - Docker:
       - Docker Compose: docker/docker-compose.md
       - Port Mapping: docker/port-mapping.md
@@ -75,8 +76,8 @@ nav:
   - Templates:
       - Standard Fix Note: templates/standard-fix-note.md
   - Tools:
-      - Hướng dẫn sử dụng Codex: tools/huong-dan-su-dung-codex.md
-      - Hướng dẫn setup để bắn Core API Gateway: tools/huong-dan-setup-dje-ban-core-api-gateway.md
+      - Codex Guide: tools/huong-dan-su-dung-codex.md
+      - Core API Gateway Setup: tools/huong-dan-setup-dje-ban-core-api-gateway.md
       - Runbook KB Overview: tools/runbook-knowledge-base-overview-and-operations.md
-      - OpenClaw Setup & Practice: tools/openclaw-setup-telegram-skills-practice.md
+      - OpenClaw Setup and Practice: tools/openclaw-setup-telegram-skills-practice.md
       - Store design assets: tools/store-design-assets-app-store-google-play-vi.md
