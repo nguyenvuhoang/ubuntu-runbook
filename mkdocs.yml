@@ -66,6 +66,7 @@ nav:
       - Docker SQL Server: sqlserver/docker-sqlserver.md
       - Open Port 1433: sqlserver/open-port-1433.md
       - Connect Through WARP: sqlserver/connect-through-warp.md
+      - Fix Orphan User After Restore: sqlserver/fix-orphan-user-after-restore.md
   - Git:
       - Fix Existing Tag: git/tag-would-clobber-existing-tag.md
       - Divergent Branch: git/divergent-branch.md
