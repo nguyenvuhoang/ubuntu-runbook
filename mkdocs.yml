@@ -64,6 +64,7 @@ nav:
       - SQL Server Private CIDR: cloudflare/sqlserver-private-cidr.md
   - SQL Server:
       - Docker SQL Server: sqlserver/docker-sqlserver.md
+      - Backup SQL Server Ubuntu: sqlserver/backup-sqlserver-ubuntu.md
       - Open Port 1433: sqlserver/open-port-1433.md
       - Connect Through WARP: sqlserver/connect-through-warp.md
       - Fix Orphan User After Restore: sqlserver/fix-orphan-user-after-restore.md
