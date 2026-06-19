@@ -80,6 +80,7 @@ nav:
   - Tools:
       - Codex Guide: tools/huong-dan-su-dung-codex.md
       - Core API Gateway Setup: tools/huong-dan-setup-dje-ban-core-api-gateway.md
+      - LinKit JObject Conversion: tools/linkit-convert-jobject-to-object.md
       - Runbook KB Overview: tools/runbook-knowledge-base-overview-and-operations.md
       - OpenClaw Setup and Practice: tools/openclaw-setup-telegram-skills-practice.md
       - Store design assets: tools/store-design-assets-app-store-google-play-vi.md
